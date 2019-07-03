@@ -1,0 +1,21 @@
+ul.nav a{
+    cursor: pointer;
+}
+a.navbar-brand{
+    font-size: 25px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+nav.navbar.navbar-static-top {
+    background-color: #154360;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: white;
+}
+.has-error li {
+    color: red;
+}
+
+

@@ -1,0 +1,77 @@
+<div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">ABC Car Rentals</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <!-- /.navbar-top-links -->
+    
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a onclick='goTo("home.htm")'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                </li>
+    
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Customers<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a onclick='createCustomer()'>Add New</a>
+                        </li>
+                        <li>
+                            <a onclick='loadAllCustomers()'>View All</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+    
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Manage Vehicles<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a onclick='createVehicle()'>Add New</a>
+                        </li>
+                        <li>
+                            <a onclick='loadAllVehicles()'>View All</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>            
+    
+    
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Manage Rentals<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a onclick='goTo("rental/create.htm")'>Add New</a>
+                        </li>
+                        <li>
+                            <a onclick='goTo("rental/index.htm")'>View All</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li> 
+    
+    
+                <li class="active">
+                    <a href="#"><i class="fa fa-files-o fa-fw"></i> Users<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a onclick='goTo("user/create.htm")'>Add New</a>
+                        </li>
+                        <li>
+                            <a onclick='goTo("user/index.htm")'>View All</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>

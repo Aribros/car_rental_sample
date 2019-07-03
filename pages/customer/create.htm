@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Add New Customer</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form has-error"></div>
+            <form role="form" id="customer-form">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Basic Customer Information
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6  col-md-6">
+                            
+                                <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input class="form-control"  name="full_name" placeholder="Full Name">
+                                    <p class="help-block">Enter customer's full name.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone number</label>
+                                    <input class="form-control"   name="phone_number"  placeholder="Phone Number">
+                                    <p class="help-block">Enter Customer's Phone Number.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <textarea class="form-control"   name="address"   rows="3" placeholder="Customers Address"></textarea>
+                                </div>
+
+                            
+                        </div>
+                        <div class="col-lg-6  col-md-6">                                
+                            <div class="form-group">
+                                <label>Remarks </label>
+                                <textarea class="form-control"   name="remarks"  rows="6" placeholder="Other Details"></textarea>
+                                <p class="help-block">Enter Other details such as ID number etc.</p>
+                            </div>
+                        </div>                        
+
+                    </div>
+                    <!-- /.row (nested) -->
+                    <hr>
+                    <button type="submit" class="btn btn-success">Submit Button</button>
+                    <button type="reset" class="btn btn-default">Reset Button</button>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </form>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>    
+</div>

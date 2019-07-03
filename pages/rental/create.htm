@@ -1,0 +1,75 @@
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Add New Rent</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    
+        <div class="row">
+            <div class="col-lg-12">
+                <form role="form">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Rental Form
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                
+                                <div class="form-group">
+                                    <label>Select Customer</label>
+                                    <select name="customer_id"  class="form-control" >
+                                        <option >Customer A</option>
+                                    </select>
+                                    <p class="help-block">Select Customer</p>
+                                </div>                                
+
+                                <div class="form-group">
+                                    <label>Total Amount</label>
+                                    <input class="form-control"   name="total_amount"  placeholder="Total Amount">
+                                    <p class="help-block">Total Amount.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Paid Amount</label>
+                                    <input class="form-control"   name="paid_amount"  placeholder="Amount Paid">
+                                    <p class="help-block">Paid Amount.</p>
+                                </div>
+
+                                
+                            </div>
+                            <div class="col-lg-6  col-md-6">  
+                                
+                                <div class="form-group">
+                                    <label>Select Status</label>
+                                    <select name="status"  class="form-control" >
+                                        <option >Pending</option>
+                                        <option >Returned</option>
+                                    </select>
+                                    <p class="help-block">Rental Status</p>
+                                </div>                             
+
+                                <div class="form-group">
+                                    <label>Remarks </label>
+                                    <textarea class="form-control"   name="remarks"  rows="6" placeholder="Other Details"></textarea>
+                                    <p class="help-block">Enter Other details.</p>
+                                </div>
+                                <input type="hidden" name="vehicle_id" value="">
+                            </div>                        
+    
+                        </div>
+                        <!-- /.row (nested) -->
+                        <hr>
+                        <button type="submit" class="btn btn-success">Submit Button</button>
+                        <button type="reset" class="btn btn-default">Reset Button</button>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </form>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>    
+    </div>
