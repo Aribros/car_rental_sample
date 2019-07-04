@@ -12,7 +12,8 @@ var db = new Dexie("CarRental");
 
 db.version(1).stores({
   customer: "++id, full_name, phone_number, address, remarks",
-  vehicle: "++id,make,model, rental_price, reg_number, description"
+  vehicle: "++id,make,model, rental_price, reg_number, description",
+  rent: "++id,customer_id,vehicle_id, status"
 });
 // Dexie.delete('CarRental');
 
@@ -70,6 +71,7 @@ function isEmpty(val){
 //Confirm A message
 function confirmDialog(msg){
     let res = dialog.showMessageBox({
+        title: "ABC Car Rental",
         message: msg,
         type: "question",
         buttons: ["Yes", "No" ]
@@ -81,8 +83,9 @@ function confirmDialog(msg){
 }
 
 //Show Message Box
-function msgBox(msg){
+function msgBox( msg){
     dialog.showMessageBox({
+        title: "ABC Car Rental",
         message: msg,
         type: "question",
         buttons: ["Okay" ]

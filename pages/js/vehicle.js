@@ -69,12 +69,10 @@ function performSave(vehicle,isNew = true){
             console.log(e)
             msgBox("Error: Update vehicle info.");
         });      
-    }else{  //Save Data id Not new
+    }else{  //Save Data, id Not new
         db.vehicle.put(vehicle)
         .then(function() {
-            $('#page-wrapper').load('./vehicle/index.htm',function(e){
-                loadAllVehicles()
-            })
+            loadAllVehicles()
         }).catch(function (e) {
             console.log(e)
             msgBox("Error: Cannot Save Data");
@@ -97,42 +95,68 @@ function createVehicle(data = null){
 
 //Load All Vehicles
 function loadAllVehicles(){
-    $('#page-wrapper').load('./vehicle/index.htm');
-    db.vehicle.toArray()
-    .then(res => {
-        if(res.length === 0){
-            return $("#all-vehicles tbody").html(" No Result Found")
+
+    $('#page-wrapper').load('./vehicle/index.htm', function(r){
+        db.vehicle.toArray()
+        .then(res => {
+            if(res.length === 0){
+                return $("#all-vehicles tbody").html(" No Result Found")
+            }
+            tbl = "";
+            for(i = 0; i < res.length; i++){
+                tbl += `<tr>
+                    <td>${i + 1} </td>
+                    <td> ${res[i].make } , ${res[i].model } </td>
+                    <td> ${res[i].reg_number }</td>
+                    <td> ${res[i].rental_price }</td>
+                    <td id = "v-status-${res[i].id}">${ getStatus(res[i].id) }</td>
+                    <td>${res[i].description }</td>
+                    <td><a onclick='rentVehicle(${parseInt(res[i].id)})' class ='btn btn-link'>Rent</a>|<a  onclick='updateVehicle(${parseInt(res[i].id)})' class ='btn btn-link'>Edit</a>|<a  onclick='deleteVehicle(${parseInt(res[i].id)})' class ='btn btn-link btn-sm'>Delete</a></td>
+                </tr>`
+            }
+            $("#all-vehicles tbody").html(tbl)
+        })
+        .catch(err => {
+            msgBox("Error: Cannot load vehicles");
+            console.log(err)
+        })
+    });
+}
+
+//Rent Vehicle
+function rentVehicle(id){
+    db.vehicle.where('id').equals(id).first()
+    .then((vehicle) => {
+        if(vehicle !== undefined){
+            db.rent.where('vehicle_id').equals(`${id}`).first()
+            .then((rent) => {
+                console.log(rent,id)
+                if(rent !== undefined && rent.status === "Pending"){
+                    return msgBox("Vehicle is not available. It is already rented.");  
+                }else{
+                    loadRentPage(vehicle); //in Rental Page
+                }
+            })
+        }else{
+            msgBox("Error: Vehicle was not found!");  
         }
-        tbl = "";
-        for(i = 0; i < res.length; i++){
-            tbl += `<tr>
-                <td>${i + 1} </td>
-                <td> ${res[i].make } , ${res[i].model } </td>
-                <td> ${res[i].reg_number }</td>
-                <td> ${res[i].rental_price }</td>
-                <td>${res[i].description }</td>
-                <td><a onclick='rentVehicle(${parseInt(res[i].id)})' class ='btn btn-link'>Rent</a>|<a  onclick='updateVehicle(${parseInt(res[i].id)})' class ='btn btn-link'>Edit</a>|<a  onclick='deleteVehicle(${parseInt(res[i].id)})' class ='btn btn-link btn-sm'>Delete</a></td>
-            </tr>`
-        }
-        $("#all-vehicles tbody").html(tbl)
     })
     .catch(err => {
-        msgBox("Error: Cannot load vehicles");
+        msgBox("Error: Cannot load vehicle inforamtion");
         console.log(err)
-    })
+    })    
 }
 
-
-function rentVehicle(id){
-}
-
-
+//Load Update Page
 function updateVehicle(id){
     db.vehicle.where('id').equals(id).first()
-    .then((res) => {
-        createVehicle(res);
+    .then((vehicle) => {
+        if(vehicle !== undefined){
+            createVehicle(vehicle);
+        }else{
+            msgBox("Error: Vehicle was not found!");  
+        }        
     })
-    
 }
 
 
@@ -146,6 +170,19 @@ function deleteVehicle(id){
         loadAllVehicles()
     })
     .catch((err) => console.log(err))
+}
+
+
+function getStatus(id){
+    db.rent.where('vehicle_id').equals(`${id}`).first()
+    .then((rent) => {
+        console.log(id)
+        if(rent !== undefined && rent.status === "Pending"){
+            $("#v-status-"+id).html(`<span class='label label-danger'>RENTED</span>`);
+        }else{
+            $("#v-status-"+id).html(`<span class='label label-success'>AVAILABLE</span>`);
+        }
+    })
 }
 
 //--------------------------Validation-----------------

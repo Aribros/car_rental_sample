@@ -103,29 +103,30 @@ function createCustomer(data = null){
 
 //Load All Available Customers
 function loadAllCustomers(){
-    $('#page-wrapper').load('./customer/index.htm');
-    db.customer.toArray()
-    .then(res => {
-        if(res.length === 0){
-            return $("#all-customers tbody").html(" No Result Found")
-        }
-        tbl = "";
-        for(i = 0; i < res.length; i++){
-            tbl += `<tr>
-                <td>${i + 1} </td>
-                <td> ${res[i].full_name }  </td>
-                <td> ${res[i].phone_number }</td>
-                <td> ${res[i].address }</td>
-                <td>${res[i].remarks }</td>
-                <td><a  onclick='updateCustomer(${parseInt(res[i].id)})' class ='btn btn-link'>Edit</a>|<a  onclick='deleteCustomer(${parseInt(res[i].id)})' class ='btn btn-link btn-sm'>Delete</a></td>
-            </tr>`            
-        }
-        return $("#all-customers tbody").html(tbl)
-    })
-    .catch(err => {
-        msgBox("Error: Cannot load customers");
-        console.log(err)
-    })
+    $('#page-wrapper').load('./customer/index.htm', () => {
+        db.customer.toArray()
+        .then(res => {
+            if(res.length === 0){
+                return $("#all-customers tbody").html(" No Result Found")
+            }
+            tbl = "";
+            for(i = 0; i < res.length; i++){
+                tbl += `<tr>
+                    <td>${i + 1} </td>
+                    <td> ${res[i].full_name }  </td>
+                    <td> ${res[i].phone_number }</td>
+                    <td> ${res[i].address }</td>
+                    <td>${res[i].remarks }</td>
+                    <td><a  onclick='updateCustomer(${parseInt(res[i].id)})' class ='btn btn-link'>Edit</a>|<a  onclick='deleteCustomer(${parseInt(res[i].id)})' class ='btn btn-link btn-sm'>Delete</a></td>
+                </tr>`            
+            }
+            return $("#all-customers tbody").html(tbl)
+        })
+        .catch(err => {
+            msgBox("Error: Cannot load customers");
+            console.log(err)
+        })        
+    });
 }
 
 //Edit customer Info
